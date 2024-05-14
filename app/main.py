@@ -3,8 +3,6 @@ from fastapi import FastAPI
 from . import models
 from .database import engine
 from .routers import posts, users, auth, votes
-from .config import settings
-
 
 models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
@@ -22,8 +20,6 @@ from fastapi import FastAPI
 from . import models
 from .database import engine
 from .routers import posts, users, auth, votes
-from .config import settings
-
 
 models.Base.metadata.create_all(bind=engine)
 app = FastAPI()

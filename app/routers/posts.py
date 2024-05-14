@@ -1,10 +1,8 @@
 <<<<<<< HEAD
-import sqlalchemy
-from .. import models, schemas, oauth2
-from fastapi import Response, status, HTTPException, Depends, APIRouter
+from .. import schemas, oauth2
+from fastapi import status, Depends, APIRouter
 from ..database import get_db
 from sqlalchemy.orm import Session
-from sqlalchemy import func
 from typing import List, Optional
 
 
@@ -113,7 +111,8 @@ def get_post(id: int, db: Session=Depends(get_db), current_user: int = Depends(o
     return post
 
 @router.post('/', status_code=status.HTTP_201_CREATED, response_model=schemas.Post_Response)
-def create_posts(post: schemas.Create_Post, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def create_posts(post: schemas.Create_Post, db: Session = Depends(get_db), current_user: int = Depends(
+    oauth2.get_current_user)):
     new_post = models.Post_Table(owner_id=current_user.id, **post.dict())
     db.add(new_post)
     db.commit()
@@ -132,7 +131,8 @@ def delete_post(id: int, db: Session=Depends(get_db), current_user: int = Depend
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 @router.put('/{id}', response_model=schemas.Post_Response)
-def update_post(id: int, updated_post: schemas.Update_Post, db: Session=Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def update_post(id: int, updated_post: schemas.Update_Post, db: Session=Depends(get_db), current_user: int = Depends(
+    oauth2.get_current_user)):
     post_query = db.query(models.Post_Table).filter(models.Post_Table.id == id)
     post = post_query.first()
     if post == None:
@@ -256,7 +256,8 @@ def get_post(id: int, db: Session=Depends(get_db), current_user: int = Depends(o
     return post
 
 @router.post('/', status_code=status.HTTP_201_CREATED, response_model=schemas.Post_Response)
-def create_posts(post: schemas.Create_Post, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def create_posts(post: schemas.Create_Post, db: Session = Depends(get_db), current_user: int = Depends(
+    oauth2.get_current_user)):
     new_post = models.Post_Table(owner_id=current_user.id, **post.dict())
     db.add(new_post)
     db.commit()
@@ -275,7 +276,8 @@ def delete_post(id: int, db: Session=Depends(get_db), current_user: int = Depend
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 @router.put('/{id}', response_model=schemas.Post_Response)
-def update_post(id: int, updated_post: schemas.Update_Post, db: Session=Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def update_post(id: int, updated_post: schemas.Update_Post, db: Session=Depends(get_db), current_user: int = Depends(
+    oauth2.get_current_user)):
     post_query = db.query(models.Post_Table).filter(models.Post_Table.id == id)
     post = post_query.first()
     if post == None:

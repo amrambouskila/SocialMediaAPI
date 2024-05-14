@@ -1,8 +1,6 @@
 <<<<<<< HEAD
-from jose import JWTError, jwt
-from datetime import datetime, timedelta
-from . import schemas, database, models
-from fastapi import Depends, status, HTTPException
+from . import schemas, database
+from fastapi import Depends, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from .config import settings

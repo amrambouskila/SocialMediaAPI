@@ -1,6 +1,6 @@
 <<<<<<< HEAD
-from .. import models, schemas, utils
-from fastapi import Response, status, HTTPException, Depends, APIRouter
+from .. import schemas
+from fastapi import status, Depends, APIRouter
 from ..database import get_db
 from sqlalchemy.orm import Session
 from typing import List
